@@ -1,0 +1,21 @@
+<?php
+session_start();
+
+define('BASE_URL' , 'http://localhost/it34b-lab');
+
+define('DB_HOST' , 'localhost');
+define('DB_NAME' , 'it34b-lab');
+define('DB_USER' , 'root');
+define('DB_PASS' , '');
+
+try{
+    $pdo =new PDO(
+        "mysql:host" . DB_HOST . "dbname=" .DBNAME, DB_USER, DB_PASS,
+        [PDO:: ATTR_ERRORMODE => PDO::ERRORMODE_EXCEPTION]
+    
+    );
+}catch(PDOException $e){
+    die("Connection failed: " . $e->getMessage());
+}
+
+?>
