@@ -1,6 +1,6 @@
 <?php
-requires_once'config/config.php';
-requires_once'includes/activity-logger.php';
+require_once 'config/config.php';
+require_once 'includes/activity-logger.php';
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $action = trim($_POST['action'] ?? '');
@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         <button
             type="submit"
             name="action">
-        >Sample</button>
+        Sample</button>
     
 </form>
 </body>

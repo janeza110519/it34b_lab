@@ -3,7 +3,7 @@ session_start();
 
 require_once(__DIR__ . '/../includes/activity-logger.php');
 
-define('BASE_URL' , 'http://localhost/it34b_lab');
+define('BASE_URL' , 'http://localhost/it34b');
 
 define('DB_HOST' , 'localhost');
 define('DB_NAME' , 'it34b_lab');
@@ -12,8 +12,8 @@ define('DB_PASS' , '');
 
 try{
     $pdo =new PDO(
-        "mysql:host=" . DB_HOST . "dbname=" .DBNAME, DB_USER, DB_PASS,
-        [PDO:: ATTR_ERRORMODE => PDO::ERRORMODE_EXCEPTION]
+        "mysql:host=" . DB_HOST . ";dbname=" .DB_NAME, DB_USER, DB_PASS,
+        [PDO:: ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     
     );
 }catch(PDOException $e){
