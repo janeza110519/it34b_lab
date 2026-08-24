@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         <button
             type="submit"
             name="action">
-        Sample</button>
+        >Sample</button>
     
 </form>
 </body>
