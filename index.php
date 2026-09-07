@@ -1,7 +1,3 @@
-index.php new new
-
-index.php new
-
 <?php
 require_once('config/config.php');
 require_once('includes/activity-logger.php');
