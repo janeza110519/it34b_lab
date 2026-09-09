@@ -13,7 +13,7 @@ function loginUser($pdo,$login,$password){
             user_email,
             user_username,
             user_password,
-            user_role,
+            user_role
         FROM users
         WHERE user_email = :login
             OR user_username = :login
@@ -21,11 +21,11 @@ function loginUser($pdo,$login,$password){
     ";
 
     $stmt = $pdo->prepare($sql);
-    $stmt ->execute([':login' => $login]);
+    $stmt->execute([':login' => $login]);
 
     $user = $stmt->fetch();
 
-    if(!user){
+    if(!$user){
         return false;
     }
 
@@ -35,7 +35,7 @@ function loginUser($pdo,$login,$password){
 
     $_SESSION['user_id']=$user['user_id'];
     $_SESSION['user_email']=$user['user_email'];
-    $_SESSION['user_username']=$user['user_name'];
+    $_SESSION['user_username']=$user['user_username'];
     $_SESSION['user_role']=$user['user_role'];
 
     return true;
