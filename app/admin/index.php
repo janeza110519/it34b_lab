@@ -29,12 +29,13 @@ $activities = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.8/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/3.0.4/css/dataTables.bootstap5.min.css"/>
 </head>
 <body>
     <h1>Welcome Admin</h1>
     <a href="../../auth/signout.php">Sign Out</a>
-    
-    <table border="1">
+    <table id="example" class="table table-striped" style="width:auto">
         <thead>
             <tr>
                 <th>Record ID</th>
@@ -63,4 +64,13 @@ $activities = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </tbody>
     </table>  
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/3.0.4/js/dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/3.0.4/js/dataTables.bootstap5.min.js"></script>
+<script>
+    new DataTable('#example',{
+        scrolly: '400px',
+        autowidth: false,
+    });
+</script>
 </html>
