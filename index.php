@@ -1,15 +1,40 @@
-index.php
-
 <?php
 require_once 'config/config.php';
-require_once 'includes/activity-logger.php';
+require_once 'config/functions.php';
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $action = $_POST['action'] ?? '';
-
-    $user_id = $_SESSION['user_id' ] ?? null;
-    $user_email = $_SESSION['user_email'] ?? null;
+if(isset($_SESSION['user_id'])){
+    header('Location: ' .BASE_URL . '/app/' . $_SESSION['user_role'] . '/index.php');
+    exit;
 }
+
+$error='';
+
+if($_SERVER['REQUEST_METHOD'] ==='POST'){
+    
+    $login = trim($_POST['login'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+    
+    $error = 'Invalid login credentials';
+
+    if ($login==='' || $password ===''){
+        // Log incomplete login attempt
+        logActivity($pdo,null,$login,'login','failed');
+
+    } else {
+        
+        if(loginUser($pdo,$login,$password)){
+        // Log incomplete login attempt
+        logActivity($pdo,$_SESSION['user_id'],$_SESSION['user_email'],'login','success');
+            
+            echo 'Location: ' . BASE_URL . '/app/' . $_SESSION['user_role'] . '/index.php'; 
+            header('Location: ' . BASE_URL . '/app/' . $_SESSION['user_role'] . '/index.php');
+            exit;
+        }
+    }
+
+}
+
 
 ?>
 
@@ -21,13 +46,22 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <title>Document</title>
 </head>
 <body>
-    <form method="POST">
-        <button
-            type="submit"
-            name="action">
-            name="action"
-        >Sample</button>
-    
+
+<form method="POST">
+    <label>Username or Email</label>
+    <input type="text"
+            name="login"
+            required>
+
+    <br>
+    <br>
+    <label>Password</label>
+    <input type="password"
+            name="password"
+            required>
+    <br>
+    <button type="submit">Sign In</button>
 </form>
+    
 </body>
 </html>
