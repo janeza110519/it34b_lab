@@ -3,12 +3,7 @@ require '../../config/config.php';
 
 requireRole('admin');
 
-logActivity(
-    $pdo,
-    $_SESSION['user_id'],
-    $_SESSION['user_email'],
-    'view_activity_logs',
-    'success'
+logActivity($pdo, $_SESSION['user_id'], $_SESSION['user_email'],'view_activity_logs','success'
 );
 
 //Activity Logs Query#3
