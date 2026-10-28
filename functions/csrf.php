@@ -5,7 +5,7 @@ function generateCsrfToken(){
         $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
     }
 
-    return $_SESSION['crsf_token'];
+    return $_SESSION['csrf_token'];
 }
 
 // Verify CSRF Token
@@ -23,7 +23,7 @@ function verifyCsrfToken($token){
 
 // Require CSRF Token
 function requireCsrfToken(){
-    if($_SESSION['REQUEST_METHOD'] !== 'POST'){
+    if($_SERVER['REQUEST_METHOD'] !== 'POST'){
         return;
     }
 
